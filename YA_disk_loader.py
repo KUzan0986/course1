@@ -1,5 +1,5 @@
 import requests
-
+from pprint import pprint
 
 class YaUploader:
     def __init__(self, path="test"):
@@ -34,7 +34,16 @@ class YaUploader:
     def _chek_path(self, path):
         url = "https://cloud-api.yandex.net/v1/disk/resources"
         headers = self._get_headers()
-        params = {
-            "path": f"/{path}"
-        }
-        requests.put(url=url, headers=headers, params=params)
+        slitter = path.split("/")
+        count = 0
+        for i in slitter:
+            count +=1
+            stri = ""
+            for j in range(count):
+                stri = stri + slitter[j] + "/"
+            stri = stri[0:len(stri)-1]
+            params = {
+                "path": f"/{stri}"
+            }
+            result = requests.put(url=url, headers=headers, params=params)
+            pprint(result.json())
