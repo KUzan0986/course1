@@ -1,6 +1,7 @@
 import requests
 from pprint import pprint
 
+
 class YaUploader:
     def __init__(self, path="test"):
         with open("YA_disk_token", encoding="UTF-8") as token:
@@ -37,7 +38,7 @@ class YaUploader:
         slitter = path.split("/")
         count = 0
         for i in slitter:
-            count +=1
+            count += 1
             stri = ""
             for j in range(count):
                 stri = stri + slitter[j] + "/"

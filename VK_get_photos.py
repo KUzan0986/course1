@@ -1,7 +1,7 @@
-from pprint import pprint
 import requests
 import json
 import copy
+
 
 class MyVk:
     def __init__(self, count=1, user=None):
@@ -31,14 +31,14 @@ class MyVk:
                   }
         request = requests.get(url=url, params=params)
         # pprint(request.json())
-        for i in range(len(request.json()['response']['items'])):
-            name_file = str(request.json()['response']['items'][i]['likes']['count']) + ".jpeg"
-            url_photo = request.json()['response']['items'][i]['sizes'][-1]['url']
-            size_photo = request.json()['response']['items'][i]['sizes'][-1]['type']
+        items = request.json()['response']['items']
+        for photo in items:
+            name_file = str(photo['likes']['count']) + ".jpeg"
+            url_photo = photo['sizes'][-1]['url']
+            size_photo = photo['sizes'][-1]['type']
             for j in self.json_main:
                 if j['file_name'] == name_file:
-                    name_file = name_file[0:len(name_file) - 5] + " " + str(
-                        request.json()['response']['items'][i]['date']) + ".jpeg"
+                    name_file = name_file[0:len(name_file) - 5] + " " + str(photo['date']) + ".jpeg"
             self.json_main.append({"file_name": name_file, "size": size_photo, "url": url_photo})
         return self.json_main
 

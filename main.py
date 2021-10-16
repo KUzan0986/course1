@@ -2,7 +2,7 @@ import VK_get_photos
 import YA_disk_loader
 
 
-def get_number(none_allowd = False):
+def get_number(none_allowd=False):
     while True:
         try:
             stri = int(input("введите запрашиваемое число"))
@@ -23,7 +23,8 @@ def main():
     vk_photos = VK_get_photos.MyVk(count=count, user=user_ID)
     ya_upload = YA_disk_loader.YaUploader(path=path)
     ya_upload.ya_upload(vk_photos.json_main)
-    input()
+    input()  # этот инпут для .ехе файла, чтобы он не закрылся после выполнения
 
 
-main()
+if __name__ == "__main__":
+    main()
