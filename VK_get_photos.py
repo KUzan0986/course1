@@ -1,12 +1,14 @@
 import requests
 import json
 import copy
+import os
 
 
 class MyVk:
     def __init__(self, count=1, user=None):
-        with open("VK_token", encoding="UTF-8") as token:
-            self.token = token.readline().strip()
+        # with open("VK_token", encoding="UTF-8") as token:
+        #     self.token = token.readline().strip()
+        self.token = os.environ["VKtoken"]
         self.root_url = "https://api.vk.com/method/"
         self.user = user
         self.vers = "5.131"
@@ -48,3 +50,5 @@ class MyVk:
             del i["url"]
         with open("result_json.json", "w") as file:
             json.dump(json_save, file, indent=4)
+
+qqq = MyVk(5)

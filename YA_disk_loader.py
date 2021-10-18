@@ -1,11 +1,13 @@
 import requests
 from pprint import pprint
+import os
 
 
 class YaUploader:
     def __init__(self, path="test"):
-        with open("YA_disk_token", encoding="UTF-8") as token:
-            self.token = token.readline().strip()
+        # with open("YA_disk_token", encoding="UTF-8") as token:
+        #     self.token = token.readline().strip()
+        self.token = os.environ["YA_token"]
         self.path = path
 
     def _get_headers(self):
